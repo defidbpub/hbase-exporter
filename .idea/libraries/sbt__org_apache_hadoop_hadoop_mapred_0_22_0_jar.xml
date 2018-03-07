@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="sbt: org.apache.hadoop:hadoop-mapred:0.22.0:jar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.hadoop/hadoop-mapred/jars/hadoop-mapred-0.22.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.ivy2/cache/org.apache.hadoop/hadoop-mapred/srcs/hadoop-mapred-0.22.0-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
