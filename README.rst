@@ -2,7 +2,7 @@
 HBase-Exporter
 =======
 
-HBase-Exporter: A convenient Scala/Spark table exporter for Apache HBase
+HBase-Exporter: Apache HBase table exporter written in Scala/Spark
 
 .. image:: https://img.shields.io/badge/HBase_Exporter-v1.0.0-green.svg
         :target: https://github.com/janrock-hwx?tab=repositories
@@ -11,26 +11,24 @@ HBase-Exporter: A convenient Scala/Spark table exporter for Apache HBase
 Features
 --------
 
-| This library provides ...
+| This code provides an example of usage hadoop.hbase libs to export content of HBase table to structured CSV format file.
 
 Functionality Highlights:
- - Full native ...
+ - Connection string to Zookeeper allow to use the code out of cluster
 
 Coming soon:
- - Secured environment ...
+ - Currently parked
+ - Next version 0.2 will have external args
 
 Usage
 -----
-The easiest way to install is::
-
-Background
-----------
+1) The easiest way to clone the repository: git clone ...
+2) sbt clean, build, run (assembly)
 
 Version Support
 ---------------
+v0.1: Initial Commit
 
 Requirements
 ------------
-
-Credits
----------
+JDK8, Scala, Apache-Spark
