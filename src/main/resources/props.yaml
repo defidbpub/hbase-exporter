@@ -1,0 +1,12 @@
+CONF:
+  Props:
+    props_master : local[*]
+    props_appname : HBaseExporter
+    props_zookeeper : uk01dl601
+    props_table : MAKO:l0_term_ref
+    props_header : true
+    props_output : ~/.
+  Header:
+    col_01 : PK
+    col_02 : Version
+    col_03 : Symbol

@@ -22,6 +22,18 @@ libraryDependencies ++= Seq(
 libraryDependencies += "joda-time" % "joda-time" % "2.9.9"
 libraryDependencies += "com.github.scopt" %% "scopt" % "3.5.0"
 
+libraryDependencies ++= {
+  val circeV = "0.8.0"
+  Seq(
+    "io.circe" %% "circe-core" % circeV,
+    "io.circe" %% "circe-generic" % circeV,
+    "io.circe" %% "circe-parser" % circeV,
+    "io.circe" %% "circe-java8" % circeV,
+    "io.circe" %% "circe-generic-extras" % circeV,
+    "io.circe" %% "circe-yaml" % circeV
+  )
+}
+
 // Merging strategy
 assemblyMergeStrategy in assembly := {
   case PathList("META-INF", xs @ _*) => MergeStrategy.discard
