@@ -16,7 +16,7 @@ object HBaseExporter {
 
   private var i: Int = 0
   private var allData: Array[String] = Array.empty
-  private val selPropsFile = ""
+  private var selPropsFile = ""
   private val props_master = ""
   private val props_appname = ""
   private val props_zookeeper = ""
@@ -40,25 +40,22 @@ object HBaseExporter {
 
     parser.parse(args, Config()) match {
       case Some(config) =>
-        val selPropsFile = config.argPropsFile
+        selPropsFile = config.argPropsFile
       case _ => println("Error")
     }
 
     val v_yaml_formated: List[(String, String)] = Parser.yamlParser(selPropsFile)
     val v_yaml_parsed: List[String] = v_yaml_formated.map(tuple => tuple._2)
-    val v_stock_list: String = v_yaml_parsed.mkString(",")
-    println(v_stock_list)
-    sys.exit()
 
     val sparkSession: SparkSession = SparkSession.builder
-      .appName("hbaseexporter")
-      .master("local[*]")
+      .appName(v_yaml_parsed(1).replace("\"",""))
+      .master(v_yaml_parsed.head.replace("\"",""))
       .getOrCreate
 
     val conf: Configuration = HBaseConfiguration.create()
 
     conf.setInt("timeout", 120000)
-    conf.set("hbase.zookeeper.quorum", "uk01dl601")
+    conf.set("hbase.zookeeper.quorum", v_yaml_parsed(2).replace("\"",""))
     conf.set("zookeeper.znode.parent", "/hbase-unsecure")
     conf.setInt("hbase.client.scanner.caching", 10000)
 
@@ -76,7 +73,7 @@ object HBaseExporter {
       allData :+= dataRow // to big array
     }
                 
-    val table: Table = connection.getTable(TableName.valueOf("MAKO:l0_term_ref"))
+    val table: Table = connection.getTable(TableName.valueOf(v_yaml_parsed(3).replace("\"","")))
     val result: util.Iterator[Result] = table.getScanner(scan).iterator()
     while (result.hasNext) {
       val data = result.next()
@@ -89,7 +86,12 @@ object HBaseExporter {
     import sparkSession.implicits._
                          
     val full = rdd.toDF()
-    full.coalesce(1).write.format("com.databricks.spark.csv").option("header", "true").save("ml-data.csv")
+    full.coalesce(1).write.format("com.databricks.spark.csv")
+      .option("header", v_yaml_parsed(4).replace("\"",""))
+      .option("quote", "")
+      .save(v_yaml_parsed(5).replace("\"",""))
+
+    full.write.orc(v_yaml_parsed(6).replace("\"",""))
 
     val endTimeMillis = System.currentTimeMillis()
     val durationSeconds = (endTimeMillis - startTimeMillis) / 1000

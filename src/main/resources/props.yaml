@@ -4,9 +4,9 @@ CONF:
     props_appname : HBaseExporter
     props_zookeeper : uk01dl601
     props_table : MAKO:l0_term_ref
-    props_header : true
-    props_output : ~/.
+    props_header : false
+    props_csv_output : /repository/open/layer1/hive/tables/mako-term_ref
+    props_orc_output : /repository/open/layer1/hive/tables/mako-term_ref_orc
+
   Header:
-    col_01 : PK
-    col_02 : Version
-    col_03 : Symbol
+    schema : KEY string,VERSION int,TYPE string,BKIN_ETIME string,BKIN_TIME string,EXCH_ETIME string,EXCH_TIME string,TRANS_DATE string,TRANS_ETIME string,TRIGGER_TYPE string,STYLE string,KIND string,STRIKE string,EXPIRY string,UNDERLYING string,ASSET string,ASK_PRICE double,ASK_VOLUME double,BID_PRICE double,BID_VOLUME double,VEGA string,USERID string,TXNPROPS string,TV string,TT string,TRANSID string,TRADER string,TOTALVOL string,TAG_USER string,TAG_EXCH string,TAG string,SIDE string,RTE_EXCH string,RESTRICTION string,RESIDVOL string,PORT string,ORDERTYPE string,ORDERID string,MINSIZE string,MAKO_ID string,INVENTORY string,GAMMA string,FILLID string,EXPIRY_DATE string,EXE_EXCH string,EXCH_INFO string,EXCHTRANSID string,EXCHORDERID string,DELTA string,CHAN string,CURVEID string,BUCKETCODE string,ALG string,ACCT string,VTIO string,VOL string,UNDER string,THEO_ETIME string,ROLL string,QMRT string,QMIT string,QMIO string,PRCX string,PRCS string,PRCE string,ITRT string,ITIO string,ITEX string,IFIO string,EXRT string,EX string,CLNT string,BKRT string,BKQM string,BKIO string
